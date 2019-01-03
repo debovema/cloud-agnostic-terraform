@@ -1,0 +1,9 @@
+cloud_provider = "scaleway"
+node_count     = 2
+private_key    = "~/.ssh/scaleway"
+
+# Scaleway specific
+
+scaleway_server_arch  = "x86_64"
+scaleway_server_image = "Ubuntu Xenial"
+scaleway_server_type  = "VC1S"

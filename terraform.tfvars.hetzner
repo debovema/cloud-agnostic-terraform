@@ -1,0 +1,8 @@
+cloud_provider = "hetzner"
+node_count     = 2
+private_key    = "~/.ssh/hetzner"
+
+# Hetzner specific
+
+hetzner_server_image = "ubuntu-18.04"
+hetzner_server_type  = "cx11"

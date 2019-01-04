@@ -1,3 +1,18 @@
+# AWS
+module "aws_nodes" {
+  source                         = "../aws"
+
+  node_count                     = "${var.cloud_provider == "aws" ? var.node_count : 0}"
+  node_name                      = "${var.node_name}"
+
+  ami_name_filter                = "${var.aws_ami_name_filter}"
+  ami_owners                     = "${var.aws_ami_owners}"
+  ami_virtualization_type_filter = "${var.aws_ami_virtualization_type_filter}"
+  instance_type                  = "${var.aws_instance_type}"
+  private_key                    = "${var.private_key}"
+  region                         = "${var.aws_region}"
+}
+
 # Hetzner
 module "hetzner_nodes" {
   source       = "../hetzner"

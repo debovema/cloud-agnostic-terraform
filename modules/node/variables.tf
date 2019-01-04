@@ -15,6 +15,27 @@ variable "private_key" {
 
 # Cloud-specific
 
+## AWS
+variable "aws_region" {
+  type    = "string"
+}
+
+variable "aws_ami_name_filter" {
+  type    = "list"
+}
+
+variable "aws_ami_virtualization_type_filter" {
+  type    = "list"
+}
+
+variable "aws_ami_owners" {
+  type    = "list"
+}
+
+variable "aws_instance_type" {
+  type    = "string"
+}
+
 ## Hetzner
 variable "hetzner_server_image" {
   type    = "string"

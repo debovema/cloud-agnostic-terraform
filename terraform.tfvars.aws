@@ -1,0 +1,12 @@
+cloud_provider = "aws"
+node_count     = 2
+private_key    = "~/.ssh/aws"
+ssh_user       = "ubuntu"
+
+# AWS specific
+
+aws_ami_name_filter                = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+aws_ami_owners                     = ["099720109477"] # Canonical
+aws_ami_virtualization_type_filter = ["hvm"]
+aws_instance_type                  = "t2.micro"
+aws_region                         = "us-west-2"

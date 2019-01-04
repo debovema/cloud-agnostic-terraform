@@ -1,5 +1,5 @@
 variable "cloud_provider" {
-  type    = "string" # can be 'hetzner', 'scaleway'
+  type    = "string" # can be 'aws', 'hetzner', 'scaleway'
 }
 
 # Common
@@ -14,8 +14,38 @@ variable "node_count" {
 variable "private_key" {
   type    = "string"
 }
+variable "ssh_user" {
+  type    = "string"
+  default = "root"
+}
 
 # Cloud-specific
+
+## AWS
+variable "aws_region" {
+  type    = "string"
+  default = "us-west-2"
+}
+
+variable "aws_ami_name_filter" {
+  type    = "list"
+  default = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+}
+
+variable "aws_ami_virtualization_type_filter" {
+  type    = "list"
+  default = ["hvm"]
+}
+
+variable "aws_ami_owners" {
+  type    = "list"
+  default = ["099720109477"] # Canonical
+}
+
+variable "aws_instance_type" {
+  type    = "string"
+  default = "t2.micro"
+}
 
 ## Hetzner
 variable "hetzner_server_image" {

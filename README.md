@@ -12,10 +12,58 @@ Let's try to *un*debunk this myth.
 
 Currently following Cloud providers are supported:
 
+* AWS 
 * Hetzner
 * Scaleway
 
 ## Usage
+
+Explicitly disable all providers (AWS provider is not concerned):
+
+```
+export HCLOUD_TOKEN=disabled
+export SCALEWAY_ORGANIZATION=disabled
+export SCALEWAY_TOKEN=disabled
+```
+
+> This is a limitation of Terraform not allowing to have a *count* attribute in providers definition
+(see for instance https://github.com/hashicorp/terraform/issues/19932).
+
+### AWS
+
+1. with a given IAM user, [create an access key ID and a secret access key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html?shortFooter=true#access-keys-and-secret-access-keys) and export them as AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables respectively (these are the default environment variable names used by the AWS Terraform provider):
+
+```
+export AWS_ACCESS_KEY_ID=<REDACTED>
+export AWS_SECRET_ACCESS_KEY=<REDACTED>
+```
+
+Grant this IAM user the [roles for EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
+
+2. create an SSH key pair:
+
+```
+# generate the SSH key pair
+ssh-keygen -t rsa -b 4096 -C "terraform-aws" -q -N "" -f ~/.ssh/aws
+```
+
+3. initialize Terraform variables:
+
+```
+cp terraform.tfvars.aws terraform.tfvars
+```
+
+This sample configuration will:
+* use the previously created SSH private key
+* create **2** nodes of type *t2.micro* with Ubuntu 18.04 installed in region *us-west-2*
+
+4. show and apply the Terraform plan:
+
+```
+terraform init
+terraform plan
+terraform apply -auto-approve
+```
 
 ### Hetzner
 

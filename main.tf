@@ -21,6 +21,11 @@ module "nodes" {
   aws_instance_type                  = "${var.aws_instance_type}"
 }
 
+terraform {
+  # The configuration for this backend will be filled in by Terragrunt
+  backend "s3" {}
+}
+
 # install a package on created nodes
 resource "null_resource" "git" {
   count = "${var.node_count}"
